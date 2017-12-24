@@ -326,8 +326,6 @@ float TinyGPS::course_to (float lat1, float long1, float lat2, float long2)
   lat1 = (lat1)*M_PI/180;
   lat2 = (lat2)*M_PI/180;
 
-  //float a1 = sin(dlon) * cos(lat2);
-  //float a2 = sin(lat1) * cos(lat2) * cos(dlon);
   float clat2 = cos(lat2);
   float a1 = sin(dlon)*clat2;
   float a2 = sin(lat1)*clat2*cos(dlon);
@@ -345,7 +343,7 @@ const char *TinyGPS::cardinal (float course)
 {
   static const char* directions[] = {"N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"};
 
-  int direction = (int)((course + 11.25f) / 22.5f);
+  int direction = (int)((course + 731.25f) / 22.5f);
   return directions[direction % 16];
 }
 
