@@ -308,8 +308,8 @@ float TinyGPS::distance_between (float lat1, float long1, float lat2, float long
   float hLat = radians(lat2 - lat1) * 0.5;
   float hLon = radians(lon2 - lon1) * 0.5;
 
-  lat1 = (lat1)*M_PI/180;
-  lat2 = (lat2)*M_PI/180;
+  lat1 = radians(lat1);
+  lat2 = radians(lat2);
   //float slat1 = sin(lat1);
 
   float shLat = sin(hLat);
