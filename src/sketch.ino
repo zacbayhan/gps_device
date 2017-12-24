@@ -19,13 +19,9 @@ static void print_str(const char *str, int len);
 void setup()
 {
   Serial.begin(115200);
-
-  Serial.print("Testing TinyGPS library v. "); Serial.println(TinyGPS::library_version());
-  Serial.println("by Mikal Hart");
-  Serial.println();
-  Serial.println("Sats HDOP Latitude  Longitude  Fix  Date       Time     Date Alt    Course Speed Card  Distance Course Card  Chars Sentences Checksum");
-  Serial.println("          (deg)     (deg)      Age                      Age  (m)    --- from GPS ----  ---- to London  ----  RX    RX        Fail");
-  Serial.println("-------------------------------------------------------------------------------------------------------------------------------------");
+  //convert to $GPGLL,4916.45,N,12311.12,W,225444,A,*1D
+  Serial.println("$GPGLL,4916.45,N,12311.12,W,225444,A,*1D");
+  Serial.println("----------------------------------------");
 
   ss.begin(9600);
 }
@@ -35,14 +31,17 @@ void loop()
   float flat, flon;
   unsigned long age, date, time, chars = 0;
   unsigned short sentences = 0, failed = 0;
-  static const double LONDON_LAT = 51.508131, LONDON_LON = -0.128002;
+  static const double LONDON_LAT = 39.286495, LONDON_LON = -76.626632;
 
-  print_int(gps.satellites(), TinyGPS::GPS_INVALID_SATELLITES, 5);
-  print_int(gps.hdop(), TinyGPS::GPS_INVALID_HDOP, 5);
+  //print_int(gps.satellites(), TinyGPS::GPS_INVALID_SATELLITES, 5);
+  //print_int(gps.hdop(), TinyGPS::GPS_INVALID_HDOP, 5);
+  Serial.println("$GPGLL,");
   gps.f_get_position(&flat, &flon, &age);
   print_float(flat, TinyGPS::GPS_INVALID_F_ANGLE, 10, 6);
+  Serial.println(",N,");
   print_float(flon, TinyGPS::GPS_INVALID_F_ANGLE, 11, 6);
-  print_int(age, TinyGPS::GPS_INVALID_AGE, 5);
+  Serial.println(",W,")
+  print_int(age, TinyGPS::GPS_INVALID_AGE, 5); //convert to utc timestamp
   print_date(gps);
   print_float(gps.f_altitude(), TinyGPS::GPS_INVALID_F_ALTITUDE, 7, 2);
   print_float(gps.f_course(), TinyGPS::GPS_INVALID_F_ANGLE, 7, 2);
@@ -59,7 +58,7 @@ void loop()
   Serial.println();
 
   smartdelay(1000);
-}
+} // end of main loop
 
 static void smartdelay(unsigned long ms)
 {
