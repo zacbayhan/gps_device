@@ -328,8 +328,8 @@ float TinyGPS::distance_between (float lat1, float long1, float lat2, float long
   delta = atan2(delta, denom);
 
   //float tmp = shLat * shLat + clat1 * clat2 * shLon * shLon;
-  return 6372795 * 2 * atan2(sqrt(tmp), sqrt(1.0 - tmp));
-//  return delta * 6372795;
+  //return 6372795 * 2 * atan2(sqrt(tmp), sqrt(1.0 - tmp));
+  return delta * 6372795;
 }
 
 float TinyGPS::course_to (float lat1, float long1, float lat2, float long2)
