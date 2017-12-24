@@ -42,11 +42,7 @@ void loop()
   print_float(flon, TinyGPS::GPS_INVALID_F_ANGLE, 11, 6);
   Serial.print(",W,");
   print_date(gps);
-
-  gps.stats(&chars, &sentences, &failed);
-  print_int(chars, 0xFFFFFFFF, 6);
-  print_int(sentences, 0xFFFFFFFF, 10);
-  print_int(failed, 0xFFFFFFFF, 9);
+  
   Serial.println();
 
   smartdelay(1000);
