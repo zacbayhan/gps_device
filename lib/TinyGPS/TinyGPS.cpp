@@ -335,7 +335,7 @@ float TinyGPS::course_to (float lat1, float long1, float lat2, float long2)
   {
     a2 += TWO_PI;
   }
-  return degrees(a2);
+  return (a2)*180/M_PI;
 }
 
 const char *TinyGPS::cardinal (float course)
