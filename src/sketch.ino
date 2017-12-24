@@ -35,12 +35,12 @@ void loop()
 
   //print_int(gps.satellites(), TinyGPS::GPS_INVALID_SATELLITES, 5);
   //print_int(gps.hdop(), TinyGPS::GPS_INVALID_HDOP, 5);
-  Serial.println("$GPGLL,");
+  Serial.print("$GPGLL,");
   gps.f_get_position(&flat, &flon, &age);
   print_float(flat, TinyGPS::GPS_INVALID_F_ANGLE, 10, 6);
-  Serial.println(",N,");
+  Serial.print(",N,");
   print_float(flon, TinyGPS::GPS_INVALID_F_ANGLE, 11, 6);
-  Serial.println(",W,");
+  Serial.print(",W,");
   print_int(age, TinyGPS::GPS_INVALID_AGE, 5); //convert to utc timestamp
   print_date(gps);
   print_float(gps.f_altitude(), TinyGPS::GPS_INVALID_F_ALTITUDE, 7, 2);
