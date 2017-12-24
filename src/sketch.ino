@@ -119,3 +119,16 @@ static void print_str(const char *str, int len)
     Serial.print(i<slen ? str[i] : ' ');
   smartdelay(0);
 }
+
+int nmea0183_checksum(char *nmea_data)
+{
+    int crc = 0;
+    int i;
+
+    // the first $ sign and the last two bytes of original CRC + the * sign
+    for (i = 1; i < strlen(nmea_data) - 3; i ++) {
+        crc ^= nmea_data[i];
+    }
+
+    return crc;
+}
