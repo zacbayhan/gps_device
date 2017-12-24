@@ -40,7 +40,7 @@ void loop()
   print_float(flat, TinyGPS::GPS_INVALID_F_ANGLE, 10, 6);
   Serial.println(",N,");
   print_float(flon, TinyGPS::GPS_INVALID_F_ANGLE, 11, 6);
-  Serial.println(",W,")
+  Serial.println(",W,");
   print_int(age, TinyGPS::GPS_INVALID_AGE, 5); //convert to utc timestamp
   print_date(gps);
   print_float(gps.f_altitude(), TinyGPS::GPS_INVALID_F_ALTITUDE, 7, 2);
