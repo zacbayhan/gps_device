@@ -42,7 +42,7 @@ void loop()
   print_float(flon, TinyGPS::GPS_INVALID_F_ANGLE, 11, 6);
   Serial.print(",W,");
   print_date(gps);
-  
+
   Serial.println();
 
   smartdelay(1000);
@@ -105,10 +105,10 @@ static void print_date(TinyGPS &gps)
   else
   {
     char sz[32];
-    sprintf(sz, "%02d:%02d:%02d ", hour, minute, second);
+    sprintf(sz, "%02d%02d%02d ", hour, minute, second);
     Serial.print(sz);
   }
-  print_int(age, TinyGPS::GPS_INVALID_AGE, 5);
+  //print_int(age, TinyGPS::GPS_INVALID_AGE, 5);
   smartdelay(0);
 }
 
