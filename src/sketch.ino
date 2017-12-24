@@ -109,8 +109,7 @@ static void print_date(TinyGPS &gps)
   else
   {
     char sz[32];
-    sprintf(sz, "%02d/%02d/%02d %02d:%02d:%02d ",
-        month, day, year, hour, minute, second);
+    sprintf(sz, "%02d:%02d:%02d ", hour, minute, second);
     Serial.print(sz);
   }
   print_int(age, TinyGPS::GPS_INVALID_AGE, 5);
