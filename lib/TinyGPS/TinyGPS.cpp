@@ -300,32 +300,34 @@ float TinyGPS::distance_between (float lat1, float long1, float lat2, float long
   // distance computation for hypothetical sphere of radius 6372795 meters.
   // Because Earth is no exact sphere, rounding errors may be up to 0.5%.
   // Courtesy of Maarten Lamers
-  /*
+
   float delta = (long1-long2)*M_PI/180;
   float sdlong = sin(delta);
   float cdlong = cos(delta);
-  */
-  float hLat = radians(lat2 - lat1)*M_PI/360;
-  float hLon = (long2 - long1) * M_PI/360;
 
-  lat1 = radians(lat1);
-  lat2 = radians(lat2);
-  //float slat1 = sin(lat1);
+  //float hLat = radians(lat2 - lat1)*M_PI/360;
+  //float hLon = (long2 - long1) * M_PI/360;
 
-  float shLat = sin(hLat);
-  float shLon = sin(hLon);
+  lat1 = (lat1)*M_PI/180;
+  lat2 = (lat2)*M_PI/180;
+
+  float slat1 = sin(lat1);
+  float slat2 = sin(lat2);
+
+  //float shLat = sin(hLat);
+  //float shLon = sin(hLon);
   float clat1 = cos(lat1);
   //float slat2 = sin(lat2);
   float clat2 = cos(lat2);
-  /*
+
   delta = (clat1 * slat2) - (slat1 * clat2 * cdlong);
   delta = sq(delta);
   delta += sq(clat2 * sdlong);
   delta = sqrt(delta);
   float denom = (slat1 * slat2) + (clat1 * clat2 * cdlong);
   delta = atan2(delta, denom);
-  */
-  float tmp = shLat * shLat + clat1 * clat2 * shLon * shLon;
+
+  //float tmp = shLat * shLat + clat1 * clat2 * shLon * shLon;
   return 6372795 * 2 * atan2(sqrt(tmp), sqrt(1.0 - tmp));
 //  return delta * 6372795;
 }
